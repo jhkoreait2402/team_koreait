@@ -18,11 +18,41 @@ public class MemberController {
 	
 	MemberDAO memberDAO;
 
-	//�럹�씠吏� �씠�룞
-	@RequestMapping(value="member", method = RequestMethod.GET)
+	//로그인 페이지 이동
+	@RequestMapping(value="memberlogin", method = RequestMethod.GET)
 	public String member() {
 		return Common.Member.VIEW_PATH + "login.jsp";
 	}
+	
+	@RequestMapping(value="memberlogin", method = RequestMethod.POST)
+	public String login(String id, String pwd) {
+		
+		System.out.println(id);
+		System.out.println(pwd);
+		
+		MemberDTO dto = memberDAO.login(id);
+		
+		if(dto == null) {
+			System.out.println(id);
+		}
+		
+		
+		String id2 = dto.getBu_id();
+		String pwd2 = dto.getBu_pwd();
+		
+
+		if(pwd2 == null) {
+			return "비밀번호가 일치하지 않습니다";
+		}
+		
+		System.out.println(id2);
+		System.out.println(pwd2);
+		
+		
+		System.out.println("일치");
+		return "성공";
+	}
+//	public String 
 	
 
 	/*
@@ -30,6 +60,10 @@ public class MemberController {
 	 * return
 	 * memberDAO.login(memberDAO); }
 	 */
+	
+
+	
+	
 
 
 	
