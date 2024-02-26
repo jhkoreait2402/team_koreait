@@ -15,10 +15,12 @@ public class MemberDAO {
 //	}
 	
 	
-	public String login(MemberDTO dto) {
+	public MemberDTO login(String id) {
 		
-		return sqlSession.selectOne("m.loginCheck",dto);
+		return sqlSession.selectOne("m.loginCheck",id);
 	}
+
+
 	
 	
 }
