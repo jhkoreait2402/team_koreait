@@ -18,7 +18,7 @@ public class MemberDAO {
 	public MemberDTO login(String id) {
 		System.out.println("ㅇㅇ");
 		MemberDTO dto = sqlSession.selectOne("m.memberlogin",id);
-		System.out.println(dto.getBu_id());
+		
 		return dto;
 	}
 

@@ -26,7 +26,7 @@
 			return;
 		}
 		
-		let url = "memberlogin";
+		let url = "mloginconf";
 		let param = "id="+encodeURIComponent(id)+"&pwd="+encodeURIComponent(pwd);
 		//alert(param);
 		sendRequest(url,param,callback,"POST");

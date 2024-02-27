@@ -19,20 +19,20 @@ public class MemberController {
 	final MemberDAO memberDAO;
 
 	//로그인 페이지 이동
-	@RequestMapping(value="memberlogin", method = RequestMethod.GET)
+	@RequestMapping(value="mlogin", method = RequestMethod.GET)
 	public String member() {
 		return Common.Member.VIEW_PATH + "login.jsp";
 	}
 	
-	@RequestMapping(value="memberlogin", method = RequestMethod.POST)
+	@RequestMapping(value="mloginconf", method = RequestMethod.POST)
 	public String login(String id, String pwd) {
 		
 		System.out.println("아이디 : " + id);
 		System.out.println("비밀번호 : " + pwd);
 		
 		MemberDTO dto = memberDAO.login(id);
-		String id2 = dto.getBu_id();
-		System.out.println(id2);
+		//String id2 = dto.getBu_id();
+		//System.out.println(id2);
 		
 		if(dto == null) {
 			System.out.println("아이디가 존재하지 않습니다.");
@@ -62,6 +62,18 @@ public class MemberController {
 	 * return
 	 * memberDAO.login(memberDAO); }
 	 */
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value="mjoin", method = RequestMethod.GET)
+	public String join() {
+		return Common.Member.VIEW_PATH + "member_join.jsp";
+	}
+	
+	
 	
 
 	
