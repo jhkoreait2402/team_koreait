@@ -3,6 +3,10 @@ package com.korea.gift;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +24,8 @@ public class MemberController {
 
 	
 	final MemberDAO memberDAO;
+	HttpServletRequest request;
+	HttpSession session;
 
 	//로그인 페이지 이동
 	@RequestMapping(value="mlogin", method = RequestMethod.GET)
@@ -40,11 +46,22 @@ public class MemberController {
 		MemberDTO dto = memberDAO.login(map);
 		
 		if(dto == null) {
-			System.out.println("아이디가 존재하지 않습니다.");
+			System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
+			return null;
+		}else {
+			System.out.println("로그인 준비함");
 		}
+
+		int m_idx = dto.getM_idx();
 		
+		//HttpSession session = request.getSession();
+		session.setAttribute("m_idx", m_idx);
+		session.setAttribute("name", dto.getBu_name());
 		
+		//세션 타이밍 설정
+		session.setMaxInactiveInterval(180000); // 180,000sec
 		
+		System.out.println("세션 설정함");
 //		String pwd2 = dto.getBu_pwd();
 //		
 //
@@ -57,7 +74,7 @@ public class MemberController {
 //		
 //		
 //		System.out.println("일치");
-		return null;
+		return Common.Member.VIEW_PATH+"testpage.jsp";
 	}
 //	public String 
 	

@@ -27,6 +27,8 @@ public class MemberDAO {
 		MemberDTO dto = sqlSession.selectOne("m.memberlogin",map);
 		System.out.println(dto.getM_idx());
 		System.out.println(dto.getBu_name());
+		System.out.println("실제 아이디 : " + dto.getBu_id());
+		System.out.println("실제 비밀번호 : " + dto.getBu_pwd());
 		//return null;
 		return dto;
 	}
