@@ -16,7 +16,7 @@ import util.Common;
 public class MemberController {
 
 	
-	MemberDAO memberDAO;
+	final MemberDAO memberDAO;
 
 	//로그인 페이지 이동
 	@RequestMapping(value="memberlogin", method = RequestMethod.GET)
@@ -27,30 +27,32 @@ public class MemberController {
 	@RequestMapping(value="memberlogin", method = RequestMethod.POST)
 	public String login(String id, String pwd) {
 		
-		System.out.println(id);
-		System.out.println(pwd);
+		System.out.println("아이디 : " + id);
+		System.out.println("비밀번호 : " + pwd);
 		
 		MemberDTO dto = memberDAO.login(id);
+		String id2 = dto.getBu_id();
+		System.out.println(id2);
 		
 		if(dto == null) {
-			System.out.println(id);
+			System.out.println("아이디가 존재하지 않습니다.");
 		}
 		
 		
-		String id2 = dto.getBu_id();
-		String pwd2 = dto.getBu_pwd();
 		
-
-		if(pwd2 == null) {
-			return "비밀번호가 일치하지 않습니다";
-		}
-		
-		System.out.println(id2);
-		System.out.println(pwd2);
-		
-		
-		System.out.println("일치");
-		return "성공";
+//		String pwd2 = dto.getBu_pwd();
+//		
+//
+//		if(pwd2 == null) {
+//			return "비밀번호가 일치하지 않습니다";
+//		}
+//		
+//		System.out.println(id2);
+//		System.out.println(pwd2);
+//		
+//		
+//		System.out.println("일치");
+		return null;
 	}
 //	public String 
 	
