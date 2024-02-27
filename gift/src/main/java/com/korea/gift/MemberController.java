@@ -24,6 +24,7 @@ public class MemberController {
 
 	
 	final MemberDAO memberDAO;
+	MemberDTO memberDTO;
 	HttpServletRequest request;
 	HttpSession session;
 
@@ -97,9 +98,8 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="mjoininsert", method = RequestMethod.POST)
-	public MemberDTO memberinsert(String id, String pwd, String name, String addr, String email, String phone){
+	public void memberinsert(String id, String pwd, String name, String addr, String email, String phone){
 		
-		MemberDTO memberDTO = null;
 		memberDTO.setBu_id(id);
 		memberDTO.setBu_pwd(pwd);
 		memberDTO.setBu_name(name);
@@ -109,7 +109,7 @@ public class MemberController {
 		
 		
 		
-		return memberDAO.insert(memberDTO);
+		memberDAO.insert(memberDTO);
 	}
 	
 

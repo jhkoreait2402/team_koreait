@@ -34,11 +34,11 @@ public class MemberDAO {
 	}
 
 
-	public MemberDTO insert(MemberDTO memberDTO) {
+	public void insert(MemberDTO memberDTO) {
+		System.out.println(memberDTO.getBu_id());
+		System.out.println(memberDTO.getBu_name());
+		//sqlSession.insert("m.memberjoin", memberDTO);
 		
-		//sqlSession.insert(memberDTO)
-		
-		return null;
 	}
 
 
