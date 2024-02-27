@@ -4,8 +4,8 @@ import org.apache.ibatis.session.SqlSession;
 
 import dto.MemberDTO;
 import lombok.RequiredArgsConstructor;
-@RequiredArgsConstructor
 
+@RequiredArgsConstructor
 public class MemberDAO {
 	
 	final SqlSession sqlSession;
@@ -16,8 +16,10 @@ public class MemberDAO {
 	
 	
 	public MemberDTO login(String id) {
-		
-		return sqlSession.selectOne("m.loginCheck",id);
+		System.out.println("ㅇㅇ");
+		MemberDTO dto = sqlSession.selectOne("m.memberlogin",id);
+		System.out.println(dto.getBu_id());
+		return dto;
 	}
 
 
