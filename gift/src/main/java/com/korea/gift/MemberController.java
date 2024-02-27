@@ -1,5 +1,8 @@
 package com.korea.gift;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +33,11 @@ public class MemberController {
 		System.out.println("아이디 : " + id);
 		System.out.println("비밀번호 : " + pwd);
 		
-		MemberDTO dto = memberDAO.login(id);
-		//String id2 = dto.getBu_id();
-		//System.out.println(id2);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("id",id);
+		map.put("pwd", pwd);
+		
+		MemberDTO dto = memberDAO.login(map);
 		
 		if(dto == null) {
 			System.out.println("아이디가 존재하지 않습니다.");
@@ -74,6 +79,21 @@ public class MemberController {
 	}
 	
 	
+	@RequestMapping(value="mjoininsert", method = RequestMethod.POST)
+	public MemberDTO memberinsert(String id, String pwd, String name, String addr, String email, String phone){
+		
+		MemberDTO memberDTO = null;
+		memberDTO.setBu_id(id);
+		memberDTO.setBu_pwd(pwd);
+		memberDTO.setBu_name(name);
+		memberDTO.setBu_adress(addr);
+		memberDTO.setBu_email(email);
+		memberDTO.setBu_phone(phone);
+		
+		
+		
+		return memberDAO.insert(memberDTO);
+	}
 	
 
 	
