@@ -7,6 +7,7 @@ import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,15 +25,25 @@ public class MemberController {
 
 	
 	final MemberDAO memberDAO;
-	MemberDTO memberDTO = null;
+	
 	HttpServletRequest request;
+	
+//	@Autowired
+//	MemberDTO insert_dto;
+
+	@Autowired
 	HttpSession session;
+	
+	MemberDTO dto = null;
+	
+
 
 	//로그인 페이지 이동
 	@RequestMapping(value="mlogin", method = RequestMethod.GET)
 	public String member() {
 		return Common.Member.VIEW_PATH + "login.jsp";
 	}
+	
 	
 	@RequestMapping(value="mloginconf", method = RequestMethod.POST)
 	public String login(String id, String pwd) {
@@ -44,7 +55,7 @@ public class MemberController {
 		map.put("id",id);
 		map.put("pwd", pwd);
 		
-		MemberDTO dto = memberDAO.login(map);
+		dto = memberDAO.login(map);
 		
 		if(dto == null) {
 			System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
@@ -54,11 +65,39 @@ public class MemberController {
 			System.out.println("로그인 준비함");
 		}
 
+		//int m_idx = dto.getM_idx();
+		
+//		session = request.getSession();
+		
+		//session.getAttribute("name");
+		
+		//System.out.println(session.getAttribute("m_idx"));
+		
+
+		
+
+		//The left-hand side of an assignment must be a variable - 상수로 인한 타입 미스매치
+		//Invalid left-hand side in assignment
+		
+//		부적절한 위치에서 할당 행위를 하려고 할 때 대표적인 발생하는 에러로서, 흔한 문법 오류이다.
+//		가장 흔한 실수하는 부분이 논리연산자 부분에 변수 할당하려고 했을때 자주 발생한다.
+//		출처: https://inpa.tistory.com/entry/ERROR-⚠️-Invalid-left-hand-side-in-assignment [Inpa Dev 👨‍💻:티스토리]
+		
 		int m_idx = dto.getM_idx();
 		
-		//HttpSession session = request.getSession();
-		//session.setAttribute("m_idx", m_idx);
-		//session.setAttribute("name", dto.getBu_name());
+		//세션 설정
+		
+		session.setAttribute("m_idx", m_idx);
+		
+		int idx_session = (int) session.getAttribute("m_idx");
+		System.out.println("너의 세션값은 " + idx_session);
+		
+		//세션 조회
+		
+		//MemberDTO memberDTO = (MemberDTO)session.getAttribute("m_idx");
+		//System.out.println(memberDTO);
+		
+		//dto.getM_idx(idx_session);
 		
 		//세션 타이밍 설정
 		//session.setMaxInactiveInterval(180000); // 180,000sec
@@ -102,17 +141,17 @@ public class MemberController {
 	public void memberinsert(String id, String pwd, String name, String addr, String email, String phone){
 		
 		
-		
-		memberDTO.setBu_id(id);
-		memberDTO.setBu_pwd(pwd);
-		memberDTO.setBu_name(name);
-		memberDTO.setBu_adress(addr);
-		memberDTO.setBu_email(email);
-		memberDTO.setBu_phone(phone);
-		System.out.println(id);
-		
-		
-		//memberDAO.insert(memberDTO);
+//		
+//		insert_dto.setBu_id(id);
+//		insert_dto.setBu_pwd(pwd);
+//		insert_dto.setBu_name(name);
+//		insert_dto.setBu_adress(addr);
+//		insert_dto.setBu_email(email);
+//		insert_dto.setBu_phone(phone);
+//		System.out.println(id);
+//		
+//		
+//		memberDAO.insert(insert_dto);
 	}
 	
 
