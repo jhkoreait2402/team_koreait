@@ -97,7 +97,7 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value="mjoininsert", method = RequestMethod.POST)
+	@RequestMapping("mjoininsert")
 	public void memberinsert(String id, String pwd, String name, String addr, String email, String phone){
 		
 		memberDTO.setBu_id(id);
@@ -106,7 +106,7 @@ public class MemberController {
 		memberDTO.setBu_adress(addr);
 		memberDTO.setBu_email(email);
 		memberDTO.setBu_phone(phone);
-		
+		System.out.println(id);
 		
 		
 		memberDAO.insert(memberDTO);
