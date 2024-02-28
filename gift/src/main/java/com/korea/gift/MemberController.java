@@ -24,7 +24,7 @@ public class MemberController {
 
 	
 	final MemberDAO memberDAO;
-	MemberDTO memberDTO;
+	MemberDTO memberDTO = null;
 	HttpServletRequest request;
 	HttpSession session;
 
@@ -48,6 +48,7 @@ public class MemberController {
 		
 		if(dto == null) {
 			System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
+			
 			return "[{'data':'no_data'}]";
 		}else {
 			System.out.println("로그인 준비함");
@@ -62,7 +63,7 @@ public class MemberController {
 		//세션 타이밍 설정
 		//session.setMaxInactiveInterval(180000); // 180,000sec
 		
-		System.out.println("세션 설정함");
+		//System.out.println("세션 설정함");
 //		String pwd2 = dto.getBu_pwd();
 //		
 //
@@ -75,7 +76,7 @@ public class MemberController {
 //		
 //		
 //		System.out.println("일치");
-		return Common.Member.VIEW_PATH+"testpage.jsp";
+		return "mjoin";
 	}
 //	public String 
 	
@@ -100,6 +101,8 @@ public class MemberController {
 	@RequestMapping("mjoininsert")
 	public void memberinsert(String id, String pwd, String name, String addr, String email, String phone){
 		
+		
+		
 		memberDTO.setBu_id(id);
 		memberDTO.setBu_pwd(pwd);
 		memberDTO.setBu_name(name);
@@ -109,7 +112,7 @@ public class MemberController {
 		System.out.println(id);
 		
 		
-		memberDAO.insert(memberDTO);
+		//memberDAO.insert(memberDTO);
 	}
 	
 
