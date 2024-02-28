@@ -29,11 +29,11 @@
 		let url = "mloginconf";
 		let param = "id="+encodeURIComponent(id)+"&pwd="+encodeURIComponent(pwd);
 		//alert(param);
-		sendRequest(url,param,callback,"POST");
+		sendRequest(url,param,callback,"post");
 	}
 	
-	function callback() { 
-		alert();
+	function callback() {
+		
 	}
 
 </script>
