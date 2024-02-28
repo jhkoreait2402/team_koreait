@@ -32,8 +32,8 @@
 		sendRequest(url,param,callback,"POST");
 	}
 	
-	function callback() {
-		
+	function callback() { 
+		alert();
 	}
 
 </script>

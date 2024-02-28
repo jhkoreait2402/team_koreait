@@ -48,7 +48,7 @@ public class MemberController {
 		
 		if(dto == null) {
 			System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
-			return null;
+			return "[{'data':'no_data'}]";
 		}else {
 			System.out.println("로그인 준비함");
 		}
@@ -56,11 +56,11 @@ public class MemberController {
 		int m_idx = dto.getM_idx();
 		
 		//HttpSession session = request.getSession();
-		session.setAttribute("m_idx", m_idx);
-		session.setAttribute("name", dto.getBu_name());
+		//session.setAttribute("m_idx", m_idx);
+		//session.setAttribute("name", dto.getBu_name());
 		
 		//세션 타이밍 설정
-		session.setMaxInactiveInterval(180000); // 180,000sec
+		//session.setMaxInactiveInterval(180000); // 180,000sec
 		
 		System.out.println("세션 설정함");
 //		String pwd2 = dto.getBu_pwd();
