@@ -1,5 +1,18 @@
 @charset "UTF-8";
 
+#member_login_title{
+	font-size: 60px;
+}
+
+#login_pw_text{
+	font-style: inherit coral;
+}
+
+#login_table{
+	margin: 60%;
+}
+
+
 .mjoin_idpw{
 	
 	display: flex;

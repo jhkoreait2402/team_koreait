@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +27,9 @@ public class MemberController {
 	
 	final MemberDAO memberDAO;
 	
+
+
+	
 	HttpServletRequest request;
 	
 //	@Autowired
@@ -39,13 +43,14 @@ public class MemberController {
 
 
 	//로그인 페이지 이동
-	@RequestMapping(value="mlogin", method = RequestMethod.GET)
+	@RequestMapping(value="mlogin")//, method = RequestMethod.GET
 	public String member() {
 		return Common.Member.VIEW_PATH + "login.jsp";
 	}
 	
 	
-	@RequestMapping(value="mloginconf", method = RequestMethod.POST)
+	@RequestMapping(value="mloginconf")//, method = RequestMethod.POST
+	@ResponseBody
 	public String login(String id, String pwd) {
 		
 		System.out.println("아이디 : " + id);
@@ -60,7 +65,24 @@ public class MemberController {
 		if(dto == null) {
 			System.out.println("아이디나 비밀번호가 일치하지 않습니다.");
 			
-			return "[{'data':'no_data'}]";
+			//return "login/[{'data':'null_data'}]";
+			HashMap<String, String> not_data = new HashMap<String, String>();
+			not_data.put("data", "null_data");
+			
+			//String not_data = "{'data':'null_data'}";
+			
+//			return "mlogin/"+not_data;
+			//System.out.println(not_data);
+			
+			
+			//model.addAttribute("data", "null_data");
+			//System.out.println(model);
+			
+			String link = Common.Member.VIEW_PATH;
+			
+			//return not_data;
+//			return link+"login.jsp";
+			return "[{'data':'null_data'}]";
 		}else {
 			System.out.println("로그인 준비함");
 		}
@@ -100,7 +122,7 @@ public class MemberController {
 		//dto.getM_idx(idx_session);
 		
 		//세션 타이밍 설정
-		//session.setMaxInactiveInterval(180000); // 180,000sec
+		session.setMaxInactiveInterval(180000); // 180,000sec
 		
 		//System.out.println("세션 설정함");
 //		String pwd2 = dto.getBu_pwd();
@@ -115,7 +137,15 @@ public class MemberController {
 //		
 //		
 //		System.out.println("일치");
-		return "mjoin";
+		//return "redirect:mjoin";
+		
+		
+		//HashMap<String, String> data = new HashMap<String, String>();
+		//data.put("data", "having_data");
+		
+		String data = "[{'data':'having_data'}]";
+		
+		return data;
 	}
 //	public String 
 	
